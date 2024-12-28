@@ -1,16 +1,16 @@
+const timerRef = document.querySelector(".time-display");
+const dateRef = document.querySelector(".date-display");
 const dateInput = document.getElementById("dateInput");
 const hourInput = document.getElementById("hourInput");
 const minuteInput = document.getElementById("minuteInput");
 const amPmInput = document.getElementById("amPmInput");
-const setAlarm = document.getElementById("set");
 const activeAlarms = document.querySelector(".activeAlarms");
+const setAlarm = document.getElementById("set");
 let alarmsArray = [];
 let alarmSound = new Audio("./alarm.mp3");
 
-// Format number with leading zero
 const appendZero = (num) => (num < 10 ? `0${num}` : num);
 
-// Display live time and date
 function displayTimer() {
   const now = new Date();
   const hours = appendZero(now.getHours() % 12 || 12);
@@ -23,10 +23,9 @@ function displayTimer() {
   const month = appendZero(now.getMonth() + 1);
   const year = now.getFullYear();
 
-  document.querySelector(".time-display").textContent = `${hours}:${minutes}:${seconds} ${amPm}`;
-  document.querySelector(".date-display").textContent = `${day}, ${date}-${month}-${year}`;
+  timerRef.textContent = `${hours}:${minutes}:${seconds} ${amPm}`;
+  dateRef.textContent = `${day}, ${date}-${month}-${year}`;
 
-  // Check alarms
   alarmsArray.forEach((alarm) => {
     if (alarm.isActive) {
       const alarmDate = new Date(alarm.alarmDate);
@@ -42,12 +41,10 @@ function displayTimer() {
   });
 }
 
-// Validate date input
 const validateDate = (dateString) => {
   return !isNaN(new Date(dateString).getTime());
 };
 
-// Set alarm
 setAlarm.addEventListener("click", () => {
   const dateValue = dateInput.value;
   if (!validateDate(dateValue)) {
@@ -67,14 +64,12 @@ setAlarm.addEventListener("click", () => {
   alarmsArray.push(alarmObj);
   createAlarm(alarmObj);
 
-  // Reset inputs
   dateInput.value = "";
   hourInput.value = "00";
   minuteInput.value = "00";
   amPmInput.value = "AM";
 });
 
-// Create alarm display
 const createAlarm = (alarmObj) => {
   const { id, alarmHour, alarmMinute, amPm, alarmDate } = alarmObj;
 
@@ -100,17 +95,19 @@ const createAlarm = (alarmObj) => {
   activeAlarms.appendChild(alarmDiv);
 };
 
-// Toggle alarm
 const toggleAlarm = (e, id) => {
   const alarm = alarmsArray.find((a) => a.id === id);
   if (alarm) alarm.isActive = e.target.checked;
 };
 
-// Delete alarm
 const deleteAlarm = (e, id) => {
   alarmsArray = alarmsArray.filter((a) => a.id !== id);
-  e.target.parentElement.remove();
+  const alarmDiv = document.querySelector(`.alarm[data-id="${id}"]`);
+  if (alarmSound.loop) {
+    alarmSound.loop = false;
+    alarmSound.pause();
+  }
+  alarmDiv.remove();
 };
 
-// Initialize timer
 window.onload = () => setInterval(displayTimer, 1000);

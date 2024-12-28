@@ -2,88 +2,82 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
 }
 
 body {
   background: linear-gradient(to right, #3a1c71, #d76d77, #ffaf7b);
+  font-family: "Roboto", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   color: #fff;
-  font-size: 18px;
 }
 
 .wrapper {
   background: rgba(255, 255, 255, 0.1);
-  padding: 2rem;
+  padding: 3rem;
   border-radius: 1rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
   width: 90%;
   max-width: 600px;
-  text-align: center;
+  height: 50vh;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .time-display {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: bold;
 }
 
 .date-display {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   text-align: right;
 }
 
 .inputs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
 }
 
 .inputs input,
 .inputs select,
 .inputs button {
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   border: none;
   border-radius: 0.5rem;
   background: #fff;
   color: #333;
-  text-align: center;
 }
 
 .inputs input[type="date"] {
   grid-column: span 4;
-  width: 100%;
-  font-size: 1.4rem; /* Increased font size */
-  padding: 0.8rem;
-  border-radius: 0.5rem;
   text-align: center;
-  height: 3rem; /* Increased height for better visibility */
 }
 
-.inputs select {
-  grid-column: span 1;
-  font-size: 1.2rem;
-  width: 100%; /* Ensures the dropdown covers full width */
+.inputs input:focus,
+.inputs select:focus {
+  outline: none;
+  border: 2px solid #3a1c71;
 }
 
 button#set {
   background: #3a1c71;
   color: #fff;
+  grid-column: span 4;
   cursor: pointer;
   transition: all 0.3s ease;
-  grid-column: span 4;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 button#set:hover {
@@ -91,8 +85,8 @@ button#set:hover {
 }
 
 .activeAlarms {
-  margin-top: 1.5rem;
-  max-height: 250px;
+  margin-top: 2rem;
+  max-height: 300px;
   overflow-y: auto;
 }
 
@@ -100,13 +94,13 @@ button#set:hover {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
 }
 
 .alarm span {
-  font-size: 1.1rem;
+  font-size: 1.5rem;
 }
 
 .deleteButton {
@@ -114,15 +108,9 @@ button#set:hover {
   border: none;
   color: #ff4d4d;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
 .deleteButton:hover {
   color: #ff1a1a;
-}
-
-.date-picker {
-  width: 100%; /* Ensure the calendar takes full width */
-  font-size: 1.5rem; /* Increased font size for better visibility */
-  height: 300px; /* Increased height for better visibility */
 }
