@@ -12,6 +12,7 @@ body {
   align-items: center;
   height: 100vh;
   color: #fff;
+  padding: 0 1rem;
 }
 
 .wrapper {
@@ -113,4 +114,80 @@ button#set:hover {
 
 .deleteButton:hover {
   color: #ff1a1a;
+}
+
+/* Mobile Compatibility */
+@media (max-width: 768px) {
+  .wrapper {
+    height: auto;
+    padding: 2rem;
+  }
+
+  .inputs {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .inputs input[type="date"] {
+    grid-column: span 2;
+  }
+
+  .time-display {
+    font-size: 1.8rem;
+  }
+
+  .date-display {
+    font-size: 1.2rem;
+  }
+
+  button#set {
+    font-size: 1.3rem;
+  }
+
+  .alarm span {
+    font-size: 1.3rem;
+  }
+
+  .deleteButton {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0 0.5rem;
+  }
+
+  .wrapper {
+    padding: 1.5rem;
+  }
+
+  .inputs {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+
+  .inputs input[type="date"] {
+    grid-column: span 1;
+  }
+
+  .time-display {
+    font-size: 1.6rem;
+  }
+
+  .date-display {
+    font-size: 1.1rem;
+  }
+
+  button#set {
+    font-size: 1.2rem;
+  }
+
+  .alarm span {
+    font-size: 1.2rem;
+  }
+
+  .deleteButton {
+    font-size: 1.4rem;
+  }
 }
